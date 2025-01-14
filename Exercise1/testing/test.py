@@ -6,7 +6,7 @@ import sys
 
 
 def main():
-    ps1_root_dir = pathlib.Path(__file__).parent.parent.resolve()
+    ps1_root_dir = pathlib.Path(__file__).parent.parent.parent.resolve()
 
     build_dir = ps1_root_dir / "build"
 
