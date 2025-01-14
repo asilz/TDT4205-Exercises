@@ -1,3 +1,5 @@
+#ifndef TABLE_H
+#define TABLE_H
 
 // The number of states in your table
 #define NSTATES 14
@@ -12,7 +14,7 @@
 // The state to jump to as soon as a line is invalid
 #define ERROR 13
 
-int table[NSTATES][256];
+static int table[NSTATES][256];
 
 void fillTable() {
 
@@ -39,3 +41,5 @@ void fillTable() {
     // table[...][...] = ...
 
 }
+
+#endif
