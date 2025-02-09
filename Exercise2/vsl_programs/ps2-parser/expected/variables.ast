@@ -1,0 +1,85 @@
+LIST
+ GLOBAL_DECLARATION
+  LIST
+   IDENTIFIER (global)
+   ARRAY_INDEXING
+    IDENTIFIER (myArray)
+    NUMBER_LITERAL (10)
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+  BLOCK
+   LIST
+    LIST
+     IDENTIFIER (a)
+     IDENTIFIER (b)
+    LIST
+     IDENTIFIER (c)
+   LIST
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (a)
+     NUMBER_LITERAL (5)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (b)
+     NUMBER_LITERAL (2)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (global)
+     NUMBER_LITERAL (3)
+    BLOCK
+     LIST
+      LIST
+       IDENTIFIER (d)
+     LIST
+      ASSIGNMENT_STATEMENT
+       IDENTIFIER (d)
+       OPERATOR (+)
+        IDENTIFIER (a)
+        OPERATOR (*)
+         IDENTIFIER (b)
+         IDENTIFIER (c)
+      PRINT_STATEMENT
+       LIST
+        STRING_LITERAL ("d:")
+        IDENTIFIER (d)
+    IF_STATEMENT
+     NUMBER_LITERAL (1)
+     BLOCK
+      LIST
+       LIST
+        IDENTIFIER (x)
+      LIST
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (x)
+        OPERATOR (*)
+         OPERATOR (*)
+          IDENTIFIER (a)
+          IDENTIFIER (b)
+         IDENTIFIER (c)
+       IF_STATEMENT
+        OPERATOR (>)
+         IDENTIFIER (x)
+         NUMBER_LITERAL (0)
+        BLOCK
+         LIST
+          LIST
+           IDENTIFIER (x)
+         LIST
+          ASSIGNMENT_STATEMENT
+           IDENTIFIER (x)
+           OPERATOR (+)
+            IDENTIFIER (a)
+            IDENTIFIER (global)
+        BLOCK
+         LIST
+          ASSIGNMENT_STATEMENT
+           IDENTIFIER (x)
+           IDENTIFIER (a)
+          ASSIGNMENT_STATEMENT
+           ARRAY_INDEXING
+            IDENTIFIER (myArray)
+            IDENTIFIER (global)
+           NUMBER_LITERAL (2)
+       PRINT_STATEMENT
+        LIST
+         STRING_LITERAL ("x:")
+         IDENTIFIER (x)

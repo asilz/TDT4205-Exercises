@@ -1,0 +1,107 @@
+LIST
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+  BLOCK
+   LIST
+    LIST
+     IDENTIFIER (a)
+     IDENTIFIER (b)
+     IDENTIFIER (c)
+   LIST
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (a)
+     NUMBER_LITERAL (1)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (b)
+     OPERATOR (-)
+      OPERATOR (-)
+       NUMBER_LITERAL (4)
+       NUMBER_LITERAL (1)
+      NUMBER_LITERAL (1)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (c)
+     OPERATOR (+)
+      OPERATOR (+)
+       OPERATOR (*)
+        OPERATOR (-)
+         IDENTIFIER (a)
+        IDENTIFIER (b)
+       OPERATOR (*)
+        OPERATOR (*)
+         NUMBER_LITERAL (4)
+         IDENTIFIER (a)
+        NUMBER_LITERAL (1)
+      NUMBER_LITERAL (2)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (a)
+     OPERATOR (+)
+      OPERATOR (/)
+       IDENTIFIER (a)
+       NUMBER_LITERAL (2)
+      NUMBER_LITERAL (1)
+    IF_STATEMENT
+     OPERATOR (<)
+      OPERATOR (*)
+       IDENTIFIER (a)
+       IDENTIFIER (a)
+      OPERATOR (+)
+       IDENTIFIER (b)
+       IDENTIFIER (c)
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("Yes")
+    IF_STATEMENT
+     OPERATOR (==)
+      OPERATOR (!)
+       IDENTIFIER (a)
+      NUMBER_LITERAL (0)
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("Yup")
+    IF_STATEMENT
+     OPERATOR (==)
+      OPERATOR (<=)
+       IDENTIFIER (a)
+       IDENTIFIER (b)
+      OPERATOR (>)
+       IDENTIFIER (b)
+       IDENTIFIER (a)
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("Alawys!")
+    IF_STATEMENT
+     OPERATOR (!=)
+      OPERATOR (<=)
+       IDENTIFIER (a)
+       IDENTIFIER (b)
+      OPERATOR (>=)
+       IDENTIFIER (a)
+       IDENTIFIER (b)
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("a != b")
+    IF_STATEMENT
+     OPERATOR (==)
+      OPERATOR (==)
+       IDENTIFIER (a)
+       IDENTIFIER (b)
+      OPERATOR (!=)
+       IDENTIFIER (a)
+       IDENTIFIER (b)
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("Never!")
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (c)
+     OPERATOR (+)
+      OPERATOR (<=)
+       IDENTIFIER (a)
+       IDENTIFIER (b)
+      OPERATOR (-)
+       OPERATOR (-)
+        OPERATOR (>=)
+         IDENTIFIER (a)
+         IDENTIFIER (b)
+    RETURN_STATEMENT
+     IDENTIFIER (c)

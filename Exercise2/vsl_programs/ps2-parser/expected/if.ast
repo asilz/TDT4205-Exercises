@@ -1,0 +1,60 @@
+LIST
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+   IDENTIFIER (a)
+   IDENTIFIER (b)
+  BLOCK
+   LIST
+    IF_STATEMENT
+     NUMBER_LITERAL (1)
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("Always")
+    IF_STATEMENT
+     NUMBER_LITERAL (0)
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("Never")
+     PRINT_STATEMENT
+      LIST
+       STRING_LITERAL ("This, however!")
+    IF_STATEMENT
+     OPERATOR (>)
+      IDENTIFIER (a)
+      IDENTIFIER (b)
+     BLOCK
+      LIST
+       PRINT_STATEMENT
+        LIST
+         IDENTIFIER (a)
+         STRING_LITERAL (">")
+         IDENTIFIER (b)
+     IF_STATEMENT
+      OPERATOR (<)
+       IDENTIFIER (a)
+       IDENTIFIER (b)
+      BLOCK
+       LIST
+        PRINT_STATEMENT
+         LIST
+          IDENTIFIER (a)
+          STRING_LITERAL ("<")
+          IDENTIFIER (b)
+      BLOCK
+       LIST
+        PRINT_STATEMENT
+         LIST
+          IDENTIFIER (a)
+          STRING_LITERAL ("=")
+          IDENTIFIER (b)
+    IF_STATEMENT
+     IDENTIFIER (a)
+     IF_STATEMENT
+      IDENTIFIER (b)
+      PRINT_STATEMENT
+       LIST
+        STRING_LITERAL ("a & b")
+      PRINT_STATEMENT
+       LIST
+        STRING_LITERAL ("a, but not b")

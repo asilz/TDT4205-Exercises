@@ -1,0 +1,24 @@
+LIST
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+  BLOCK
+   LIST
+    LIST
+     IDENTIFIER (localVariable)
+   LIST
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (globalVariable)
+     NUMBER_LITERAL (10)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (localVariable)
+     NUMBER_LITERAL (3)
+    PRINT_STATEMENT
+     LIST
+      STRING_LITERAL ("Global:")
+      IDENTIFIER (globalVariable)
+      STRING_LITERAL ("local:")
+      IDENTIFIER (localVariable)
+ GLOBAL_DECLARATION
+  LIST
+   IDENTIFIER (globalVariable)

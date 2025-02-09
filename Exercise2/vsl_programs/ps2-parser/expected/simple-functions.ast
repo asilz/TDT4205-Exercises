@@ -1,0 +1,51 @@
+LIST
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+  BLOCK
+   LIST
+    PRINT_STATEMENT
+     LIST
+      STRING_LITERAL ("Should be 7:")
+      FUNCTION_CALL
+       IDENTIFIER (identity)
+       LIST
+        FUNCTION_CALL
+         IDENTIFIER (first)
+         LIST
+          FUNCTION_CALL
+           IDENTIFIER (second)
+           LIST
+            NUMBER_LITERAL (5)
+            NUMBER_LITERAL (7)
+          FUNCTION_CALL
+           IDENTIFIER (first)
+           LIST
+            NUMBER_LITERAL (2)
+            NUMBER_LITERAL (9)
+ FUNCTION
+  IDENTIFIER (identity)
+  LIST
+   IDENTIFIER (argument)
+  BLOCK
+   LIST
+    RETURN_STATEMENT
+     IDENTIFIER (argument)
+ FUNCTION
+  IDENTIFIER (first)
+  LIST
+   IDENTIFIER (a)
+   IDENTIFIER (b)
+  BLOCK
+   LIST
+    RETURN_STATEMENT
+     IDENTIFIER (a)
+ FUNCTION
+  IDENTIFIER (second)
+  LIST
+   IDENTIFIER (a)
+   IDENTIFIER (b)
+  BLOCK
+   LIST
+    RETURN_STATEMENT
+     IDENTIFIER (b)
