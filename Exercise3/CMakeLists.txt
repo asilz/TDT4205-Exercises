@@ -1,3 +1,7 @@
+cmake_minimum_required(VERSION 3.21)
+
+project(vslc VERSION 1.0 LANGUAGES C)
+
 set(VSLC_SOURCES "src/vslc.c"
                  "src/tree.c"
                  "src/graphviz_output.c")
@@ -27,12 +31,12 @@ add_flex_bison_dependency(scanner parser)
 
 
 # === Finally declare the compiler target, depending on all .c files in the project ===
-add_executable(vslc2 "${VSLC_SOURCES}" "${SCANNER_GEN_C}" "${PARSER_GEN_C}")
+add_executable(vslc "${VSLC_SOURCES}" "${SCANNER_GEN_C}" "${PARSER_GEN_C}")
 # Set some flags specifically for flex/bison
-target_include_directories(vslc2 PRIVATE src "${GEN_DIR}")
-target_compile_definitions(vslc2 PRIVATE "YYSTYPE=node_t *")
+target_include_directories(vslc PRIVATE src "${GEN_DIR}")
+target_compile_definitions(vslc PRIVATE "YYSTYPE=node_t *")
 # Set general compiler flags, such as getting strdup from posix
-target_compile_options(vslc2 PRIVATE -std=c17 -D_POSIX_C_SOURCE=200809L -Wall -g)
+target_compile_options(vslc PRIVATE -std=c17 -D_POSIX_C_SOURCE=200809L -Wall -g)
 
 
 # === If Address Sanitizer is enabled, add the compiler and linker flag ===
@@ -41,9 +45,6 @@ target_compile_options(vslc2 PRIVATE -std=c17 -D_POSIX_C_SOURCE=200809L -Wall -g
 # cmake -B build -DUSE_ADDRESS_SANITIZER=ON
 set (USE_ADDRESS_SANITIZER OFF CACHE BOOL "Should the Address Sanitizer tool be enabled?")
 if (USE_ADDRESS_SANITIZER)
-  target_compile_options(vslc2 PRIVATE -fsanitize=address)
-  target_link_options(vslc2 PRIVATE -fsanitize=address)
+  target_compile_options(vslc PRIVATE -fsanitize=address)
+  target_link_options(vslc PRIVATE -fsanitize=address)
 endif()
-
-target_compile_definitions(vslc2 PRIVATE YYDEBUG=1)
-
