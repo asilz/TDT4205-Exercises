@@ -1,0 +1,109 @@
+0: FUNCTION(main)
+    0: LOCAL_VAR(a)
+    1: LOCAL_VAR(b)
+    2: LOCAL_VAR(tmp)
+    3: LOCAL_VAR(tmp)
+1: FUNCTION(recursive)
+    0: PARAMETER(x)
+    1: LOCAL_VAR(prev)
+
+ == STRING LIST == 
+
+ == BOUND SYNTAX TREE == 
+LIST
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+  BLOCK
+   LIST
+    LIST
+     IDENTIFIER (a)
+     IDENTIFIER (b)
+   LIST
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (a) LOCAL_VAR(0)
+     NUMBER_LITERAL (2)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (b) LOCAL_VAR(1)
+     NUMBER_LITERAL (6)
+    WHILE_STATEMENT
+     OPERATOR (<)
+      OPERATOR (+)
+       IDENTIFIER (a) LOCAL_VAR(0)
+       IDENTIFIER (b) LOCAL_VAR(1)
+      NUMBER_LITERAL (10)
+     BLOCK
+      LIST
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (a) LOCAL_VAR(0)
+        OPERATOR (+)
+         IDENTIFIER (a) LOCAL_VAR(0)
+         NUMBER_LITERAL (1)
+       BLOCK
+        LIST
+         LIST
+          IDENTIFIER (tmp)
+        LIST
+         ASSIGNMENT_STATEMENT
+          IDENTIFIER (tmp) LOCAL_VAR(2)
+          IDENTIFIER (a) LOCAL_VAR(0)
+         ASSIGNMENT_STATEMENT
+          IDENTIFIER (a) LOCAL_VAR(0)
+          IDENTIFIER (b) LOCAL_VAR(1)
+         ASSIGNMENT_STATEMENT
+          IDENTIFIER (b) LOCAL_VAR(1)
+          IDENTIFIER (tmp) LOCAL_VAR(2)
+    IF_STATEMENT
+     OPERATOR (<)
+      IDENTIFIER (a) LOCAL_VAR(0)
+      IDENTIFIER (b) LOCAL_VAR(1)
+     BLOCK
+      LIST
+       LIST
+        IDENTIFIER (tmp)
+      LIST
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (tmp) LOCAL_VAR(3)
+        IDENTIFIER (a) LOCAL_VAR(0)
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (a) LOCAL_VAR(0)
+        IDENTIFIER (b) LOCAL_VAR(1)
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (b) LOCAL_VAR(1)
+        IDENTIFIER (tmp) LOCAL_VAR(3)
+    RETURN_STATEMENT
+     FUNCTION_CALL
+      IDENTIFIER (recursive) FUNCTION(1)
+      LIST
+       IDENTIFIER (a) LOCAL_VAR(0)
+ FUNCTION
+  IDENTIFIER (recursive)
+  LIST
+   IDENTIFIER (x)
+  BLOCK
+   LIST
+    IF_STATEMENT
+     OPERATOR (==)
+      IDENTIFIER (x) PARAMETER(0)
+      NUMBER_LITERAL (0)
+     RETURN_STATEMENT
+      NUMBER_LITERAL (1)
+    BLOCK
+     LIST
+      LIST
+       IDENTIFIER (prev)
+     LIST
+      ASSIGNMENT_STATEMENT
+       IDENTIFIER (prev) LOCAL_VAR(1)
+       FUNCTION_CALL
+        IDENTIFIER (recursive) FUNCTION(1)
+        LIST
+         OPERATOR (-)
+          IDENTIFIER (x) PARAMETER(0)
+          NUMBER_LITERAL (1)
+      RETURN_STATEMENT
+       OPERATOR (+)
+        OPERATOR (*)
+         IDENTIFIER (prev) LOCAL_VAR(1)
+         NUMBER_LITERAL (2)
+        NUMBER_LITERAL (1)

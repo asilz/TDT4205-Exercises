@@ -1,0 +1,27 @@
+LIST
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+   IDENTIFIER (a)
+  BLOCK
+   LIST
+    (NULL)
+    PRINT_STATEMENT
+     LIST
+      STRING_LITERAL ("Hello,")
+    BLOCK
+     LIST
+      PRINT_STATEMENT
+       LIST
+        STRING_LITERAL ("World!")
+    IF_STATEMENT
+     OPERATOR (>)
+      IDENTIFIER (a)
+      NUMBER_LITERAL (10)
+     BLOCK
+      LIST
+       PRINT_STATEMENT
+        LIST
+         STRING_LITERAL ("Maybe")
+    RETURN_STATEMENT
+     NUMBER_LITERAL (0)

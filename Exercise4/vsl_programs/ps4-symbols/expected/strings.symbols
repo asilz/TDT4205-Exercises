@@ -1,0 +1,54 @@
+0: GLOBAL_VAR(glob)
+1: FUNCTION(a)
+
+ == STRING LIST == 
+0: "Hei"
+1: "Cool"
+2: "Done!"
+3: "Glob is now"
+
+ == BOUND SYNTAX TREE == 
+LIST
+ GLOBAL_DECLARATION
+  LIST
+   IDENTIFIER (glob)
+ FUNCTION
+  IDENTIFIER (a)
+  LIST
+  BLOCK
+   LIST
+    PRINT_STATEMENT
+     LIST
+      STRING_LIST_REFERENCE (0)
+    (NULL)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (glob) GLOBAL_VAR(0)
+     NUMBER_LITERAL (10)
+    WHILE_STATEMENT
+     NUMBER_LITERAL (1)
+     BLOCK
+      LIST
+       PRINT_STATEMENT
+        LIST
+         STRING_LIST_REFERENCE (1)
+       IF_STATEMENT
+        OPERATOR (==)
+         IDENTIFIER (glob) GLOBAL_VAR(0)
+         NUMBER_LITERAL (0)
+        BLOCK
+         LIST
+          PRINT_STATEMENT
+           LIST
+            STRING_LIST_REFERENCE (2)
+          BREAK_STATEMENT
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (glob) GLOBAL_VAR(0)
+        OPERATOR (-)
+         IDENTIFIER (glob) GLOBAL_VAR(0)
+         NUMBER_LITERAL (1)
+       PRINT_STATEMENT
+        LIST
+         STRING_LIST_REFERENCE (3)
+         IDENTIFIER (glob) GLOBAL_VAR(0)
+    RETURN_STATEMENT
+     NUMBER_LITERAL (5)

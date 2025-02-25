@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(vslc3 VERSION 1.0 LANGUAGES C)
+project(vslc4 VERSION 1.0 LANGUAGES C)
 
 set(VSLC_SOURCES "src/vslc.c"
                  "src/tree.c"
-                 "src/graphviz_output.c")
+                 "src/graphviz_output.c"
+                 "src/symbols.c"
+                 "src/symbol_table.c")
 
 set(VSLC_LEXER_SOURCE "src/scanner.l")
 set(VSLC_PARSER_SOURCE "src/parser.y")
@@ -31,12 +33,12 @@ add_flex_bison_dependency(scanner parser)
 
 
 # === Finally declare the compiler target, depending on all .c files in the project ===
-add_executable(vslc3 "${VSLC_SOURCES}" "${SCANNER_GEN_C}" "${PARSER_GEN_C}")
+add_executable(vslc4 "${VSLC_SOURCES}" "${SCANNER_GEN_C}" "${PARSER_GEN_C}")
 # Set some flags specifically for flex/bison
-target_include_directories(vslc3 PRIVATE src "${GEN_DIR}")
-target_compile_definitions(vslc3 PRIVATE "YYSTYPE=node_t *")
+target_include_directories(vslc4 PRIVATE src "${GEN_DIR}")
+target_compile_definitions(vslc4 PRIVATE "YYSTYPE=node_t *")
 # Set general compiler flags, such as getting strdup from posix
-target_compile_options(vslc3 PRIVATE -std=c17 -D_POSIX_C_SOURCE=200809L -Wall -g)
+target_compile_options(vslc4 PRIVATE -std=c17 -D_POSIX_C_SOURCE=200809L -Wall -g)
 
 
 # === If Address Sanitizer is enabled, add the compiler and linker flag ===
@@ -45,6 +47,6 @@ target_compile_options(vslc3 PRIVATE -std=c17 -D_POSIX_C_SOURCE=200809L -Wall -g
 # cmake -B build -DUSE_ADDRESS_SANITIZER=ON
 set (USE_ADDRESS_SANITIZER OFF CACHE BOOL "Should the Address Sanitizer tool be enabled?")
 if (USE_ADDRESS_SANITIZER)
-  target_compile_options(vslc3 PRIVATE -fsanitize=address)
-  target_link_options(vslc3 PRIVATE -fsanitize=address)
+  target_compile_options(vslc4 PRIVATE -fsanitize=address)
+  target_link_options(vslc4 PRIVATE -fsanitize=address)
 endif()

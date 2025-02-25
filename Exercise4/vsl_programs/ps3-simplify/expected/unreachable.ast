@@ -1,0 +1,104 @@
+LIST
+ FUNCTION
+  IDENTIFIER (inIf)
+  LIST
+  BLOCK
+   LIST
+    BLOCK
+     LIST
+      LIST
+       IDENTIFIER (x)
+       IDENTIFIER (y)
+       IDENTIFIER (z)
+     LIST
+      PRINT_STATEMENT
+       LIST
+        STRING_LITERAL ("Hello!")
+      RETURN_STATEMENT
+       NUMBER_LITERAL (5)
+ FUNCTION
+  IDENTIFIER (inIfElse)
+  LIST
+   IDENTIFIER (a)
+  BLOCK
+   LIST
+    IF_STATEMENT
+     OPERATOR (<)
+      IDENTIFIER (a)
+      NUMBER_LITERAL (5)
+     RETURN_STATEMENT
+      NUMBER_LITERAL (-1)
+    PRINT_STATEMENT
+     LIST
+      STRING_LITERAL ("Reachable")
+    IF_STATEMENT
+     OPERATOR (<)
+      IDENTIFIER (a)
+      NUMBER_LITERAL (10)
+     BLOCK
+      LIST
+       RETURN_STATEMENT
+        NUMBER_LITERAL (10)
+     BLOCK
+      LIST
+       RETURN_STATEMENT
+        NUMBER_LITERAL (20)
+ FUNCTION
+  IDENTIFIER (inWhile)
+  LIST
+  BLOCK
+   LIST
+    LIST
+     IDENTIFIER (x)
+   LIST
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (x)
+     NUMBER_LITERAL (10)
+    WHILE_STATEMENT
+     OPERATOR (<)
+      IDENTIFIER (x)
+      NUMBER_LITERAL (20)
+     BLOCK
+      LIST
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (x)
+        OPERATOR (+)
+         IDENTIFIER (x)
+         NUMBER_LITERAL (1)
+       IF_STATEMENT
+        OPERATOR (==)
+         IDENTIFIER (x)
+         NUMBER_LITERAL (15)
+        RETURN_STATEMENT
+         NUMBER_LITERAL (1)
+       PRINT_STATEMENT
+        LIST
+         STRING_LITERAL ("looping")
+         IDENTIFIER (x)
+    PRINT_STATEMENT
+     LIST
+      STRING_LITERAL ("Still reachable")
+    RETURN_STATEMENT
+     NUMBER_LITERAL (20)
+ FUNCTION
+  IDENTIFIER (otherWhile)
+  LIST
+   IDENTIFIER (a)
+  BLOCK
+   LIST
+    WHILE_STATEMENT
+     IDENTIFIER (a)
+     BLOCK
+      LIST
+       BREAK_STATEMENT
+    WHILE_STATEMENT
+     NUMBER_LITERAL (1)
+     BLOCK
+      LIST
+       RETURN_STATEMENT
+        NUMBER_LITERAL (10)
+    PRINT_STATEMENT
+     LIST
+      STRING_LITERAL ("Technically not reachable")
+    RETURN_STATEMENT
+     NUMBER_LITERAL (1)

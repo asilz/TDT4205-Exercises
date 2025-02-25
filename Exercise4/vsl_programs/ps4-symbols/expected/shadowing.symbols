@@ -1,0 +1,156 @@
+0: GLOBAL_VAR(x)
+1: GLOBAL_VAR(y)
+2: GLOBAL_VAR(z)
+3: FUNCTION(main)
+    0: PARAMETER(x)
+    1: PARAMETER(y)
+    2: LOCAL_VAR(x)
+    3: LOCAL_VAR(x)
+    4: LOCAL_VAR(y)
+    5: LOCAL_VAR(y)
+4: FUNCTION(other)
+    0: PARAMETER(x)
+    1: LOCAL_VAR(z)
+    2: LOCAL_VAR(x)
+    3: LOCAL_VAR(z)
+    4: LOCAL_VAR(x)
+
+ == STRING LIST == 
+
+ == BOUND SYNTAX TREE == 
+LIST
+ GLOBAL_DECLARATION
+  LIST
+   IDENTIFIER (x)
+   IDENTIFIER (y)
+   IDENTIFIER (z)
+ FUNCTION
+  IDENTIFIER (main)
+  LIST
+   IDENTIFIER (x)
+   IDENTIFIER (y)
+  BLOCK
+   LIST
+    LIST
+     IDENTIFIER (x)
+   LIST
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (x) LOCAL_VAR(2)
+     OPERATOR (+)
+      IDENTIFIER (y) PARAMETER(1)
+      NUMBER_LITERAL (2)
+    IF_STATEMENT
+     OPERATOR (>)
+      IDENTIFIER (x) LOCAL_VAR(2)
+      NUMBER_LITERAL (10)
+     BLOCK
+      LIST
+       LIST
+        IDENTIFIER (x)
+        IDENTIFIER (y)
+      LIST
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (x) LOCAL_VAR(3)
+        NUMBER_LITERAL (6)
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (y) LOCAL_VAR(4)
+        NUMBER_LITERAL (2)
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (z) GLOBAL_VAR(2)
+        OPERATOR (+)
+         IDENTIFIER (x) LOCAL_VAR(3)
+         IDENTIFIER (y) LOCAL_VAR(4)
+       BLOCK
+        LIST
+         LIST
+          IDENTIFIER (y)
+        LIST
+         ASSIGNMENT_STATEMENT
+          IDENTIFIER (y) LOCAL_VAR(5)
+          OPERATOR (+)
+           NUMBER_LITERAL (20)
+           IDENTIFIER (x) LOCAL_VAR(3)
+         ASSIGNMENT_STATEMENT
+          IDENTIFIER (x) LOCAL_VAR(3)
+          IDENTIFIER (y) LOCAL_VAR(5)
+       ASSIGNMENT_STATEMENT
+        IDENTIFIER (z) GLOBAL_VAR(2)
+        IDENTIFIER (y) LOCAL_VAR(4)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (y) PARAMETER(1)
+     OPERATOR (+)
+      IDENTIFIER (y) PARAMETER(1)
+      FUNCTION_CALL
+       IDENTIFIER (other) FUNCTION(4)
+       LIST
+        IDENTIFIER (x) LOCAL_VAR(2)
+    RETURN_STATEMENT
+     IDENTIFIER (y) PARAMETER(1)
+ FUNCTION
+  IDENTIFIER (other)
+  LIST
+   IDENTIFIER (x)
+  BLOCK
+   LIST
+    LIST
+     IDENTIFIER (z)
+   LIST
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (z) LOCAL_VAR(1)
+     OPERATOR (+)
+      IDENTIFIER (x) PARAMETER(0)
+      NUMBER_LITERAL (1)
+    BLOCK
+     LIST
+      LIST
+       IDENTIFIER (x)
+     LIST
+      ASSIGNMENT_STATEMENT
+       IDENTIFIER (x) LOCAL_VAR(2)
+       OPERATOR (+)
+        IDENTIFIER (z) LOCAL_VAR(1)
+        NUMBER_LITERAL (1)
+      BLOCK
+       LIST
+        LIST
+         IDENTIFIER (z)
+       LIST
+        ASSIGNMENT_STATEMENT
+         IDENTIFIER (z) LOCAL_VAR(3)
+         OPERATOR (+)
+          IDENTIFIER (x) LOCAL_VAR(2)
+          NUMBER_LITERAL (1)
+        BLOCK
+         LIST
+          LIST
+           IDENTIFIER (x)
+         LIST
+          ASSIGNMENT_STATEMENT
+           IDENTIFIER (x) LOCAL_VAR(4)
+           OPERATOR (+)
+            IDENTIFIER (z) LOCAL_VAR(3)
+            NUMBER_LITERAL (1)
+          BLOCK
+           LIST
+            ASSIGNMENT_STATEMENT
+             IDENTIFIER (z) LOCAL_VAR(3)
+             OPERATOR (+)
+              IDENTIFIER (x) LOCAL_VAR(4)
+              NUMBER_LITERAL (1)
+        ASSIGNMENT_STATEMENT
+         IDENTIFIER (x) LOCAL_VAR(2)
+         OPERATOR (+)
+          IDENTIFIER (z) LOCAL_VAR(3)
+          NUMBER_LITERAL (1)
+      ASSIGNMENT_STATEMENT
+       IDENTIFIER (z) LOCAL_VAR(1)
+       OPERATOR (+)
+        IDENTIFIER (x) LOCAL_VAR(2)
+        NUMBER_LITERAL (1)
+    ASSIGNMENT_STATEMENT
+     IDENTIFIER (x) PARAMETER(0)
+     OPERATOR (+)
+      IDENTIFIER (z) LOCAL_VAR(1)
+      NUMBER_LITERAL (1)
+    RETURN_STATEMENT
+     IDENTIFIER (x) PARAMETER(0)
