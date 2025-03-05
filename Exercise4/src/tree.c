@@ -1,24 +1,24 @@
 #include "vslc.h"
 
 // Global root for abstract syntax tree
-node_t* root;
+node_t *root;
 
 // Declarations of helper functions defined further down in this file
-static void node_print(node_t* node, int nesting);
-static node_t* constant_fold_subtree(node_t* node);
-static bool remove_unreachable_code(node_t* node);
-static void destroy_subtree(node_t* discard);
+static void node_print(node_t *node, int nesting);
+static node_t *constant_fold_subtree(node_t *node);
+static bool remove_unreachable_code(node_t *node);
+static void destroy_subtree(node_t *discard);
 
 // Initialize a node with the given type and children
-node_t* node_create(node_type_t type, size_t n_children, ...)
+node_t *node_create(node_type_t type, size_t n_children, ...)
 {
-  node_t* result = malloc(sizeof(node_t));
+  node_t *result = malloc(sizeof(node_t));
 
   // Initialize every field in the struct
   *result = (node_t){
       .type = type,
       .n_children = n_children,
-      .children = malloc(n_children * sizeof(node_t*)),
+      .children = malloc(n_children * sizeof(node_t *)),
       .symbol = NULL,
   };
 
@@ -27,7 +27,7 @@ node_t* node_create(node_type_t type, size_t n_children, ...)
   va_start(child_list, n_children);
   for (size_t i = 0; i < n_children; i++)
   {
-    result->children[i] = va_arg(child_list, node_t*);
+    result->children[i] = va_arg(child_list, node_t *);
   }
   va_end(child_list);
 
@@ -35,7 +35,7 @@ node_t* node_create(node_type_t type, size_t n_children, ...)
 }
 
 // Append an element to the given LIST node, returns the list node
-node_t* append_to_list_node(node_t* list_node, node_t* element)
+node_t *append_to_list_node(node_t *list_node, node_t *element)
 {
   assert(list_node->type == LIST);
 
@@ -48,7 +48,7 @@ node_t* append_to_list_node(node_t* list_node, node_t* element)
     new_allocation_size *= 2;
 
   // Resize the allocation
-  list_node->children = realloc(list_node->children, new_allocation_size * sizeof(node_t*));
+  list_node->children = realloc(list_node->children, new_allocation_size * sizeof(node_t *));
 
   // Insert the new element and increase child count by 1
   list_node->children[list_node->n_children] = element;
@@ -79,11 +79,11 @@ void remove_unreachable_code_syntax_tree(void)
 {
   for (size_t i = 0; i < root->n_children; i++)
   {
-    node_t* child = root->children[i];
+    node_t *child = root->children[i];
     if (child->type != FUNCTION)
       continue;
 
-    node_t* function_body = child->children[2];
+    node_t *function_body = child->children[2];
 
     bool has_return = remove_unreachable_code(function_body);
 
@@ -94,11 +94,11 @@ void remove_unreachable_code_syntax_tree(void)
     // }
     if (!has_return)
     {
-      node_t* zero_node = node_create(NUMBER_LITERAL, 0);
+      node_t *zero_node = node_create(NUMBER_LITERAL, 0);
       zero_node->data.number_literal = 0;
-      node_t* return_node = node_create(RETURN_STATEMENT, 1, zero_node);
-      node_t* statement_list = node_create(LIST, 2, function_body, return_node);
-      node_t* new_function_body = node_create(BLOCK, 1, statement_list);
+      node_t *return_node = node_create(RETURN_STATEMENT, 1, zero_node);
+      node_t *statement_list = node_create(LIST, 2, function_body, return_node);
+      node_t *new_function_body = node_create(BLOCK, 1, statement_list);
       child->children[2] = new_function_body;
     }
   }
@@ -114,7 +114,7 @@ void destroy_syntax_tree(void)
 // The rest of this file contains private helper functions used by the above functions
 
 // Prints out the given node and all its children recursively
-static void node_print(node_t* node, int nesting)
+static void node_print(node_t *node, int nesting)
 {
   // Indent the line based on how deep the node is in the syntax tree
   printf("%*s", nesting, "");
@@ -163,7 +163,7 @@ static void node_print(node_t* node, int nesting)
 }
 
 // Constant folds the given OPERATOR node, if all children are NUMBER_LITERAL
-static node_t* constant_fold_operator(node_t* node)
+static node_t *constant_fold_operator(node_t *node)
 {
   assert(node->type == OPERATOR);
 
@@ -172,7 +172,7 @@ static node_t* constant_fold_operator(node_t* node)
     if (node->children[i]->type != NUMBER_LITERAL)
       return node;
 
-  const char* op = node->data.operator;
+  const char *op = node->data.operator;
 
   // This is where we store the result of the constant fold
   int64_t result;
@@ -227,7 +227,7 @@ static node_t* constant_fold_operator(node_t* node)
 
 // If the condition of the given if node is a NUMBER_LITERAL, the if is replaced by the taken
 // branch. If the if condition is false, and the if has no else-body, NULL is returned.
-static node_t* constant_fold_if(node_t* node)
+static node_t *constant_fold_if(node_t *node)
 {
   assert(node->type == IF_STATEMENT);
 
@@ -236,7 +236,7 @@ static node_t* constant_fold_if(node_t* node)
   bool condition = node->children[0]->data.number_literal;
 
   // Detatch the node we want to return from the IF_STATEMENT-node
-  node_t* result = NULL;
+  node_t *result = NULL;
 
   if (condition)
   {
@@ -258,7 +258,7 @@ static node_t* constant_fold_if(node_t* node)
 // If the condition of the given while node is a NUMBER_LITERAL, and it is false (0),
 // we remove the entire while node and return NULL instead.
 // Loops that look like while(true) { ... } are kept as is. They may have a break inside
-static node_t* constant_fold_while(node_t* node)
+static node_t *constant_fold_while(node_t *node)
 {
   assert(node->type == WHILE_STATEMENT);
 
@@ -276,7 +276,7 @@ static node_t* constant_fold_while(node_t* node)
 // Does constant folding on the subtreee rooted at the given node.
 // Returns the root of the new subtree.
 // Any node that is detached from the tree by this operation must be freed, to avoid memory leaks.
-static node_t* constant_fold_subtree(node_t* node)
+static node_t *constant_fold_subtree(node_t *node)
 {
   if (node == NULL)
     return node;
@@ -302,7 +302,7 @@ static node_t* constant_fold_subtree(node_t* node)
 // Returns true if execution of the given statement is guaranteed to interrupt execution
 // through either a return statement or a break statement.
 // When node is a BLOCK, any statements that come after such an interrupting statement are removed.
-static bool remove_unreachable_code(node_t* node)
+static bool remove_unreachable_code(node_t *node)
 {
   if (node == NULL)
     return false;
@@ -340,11 +340,11 @@ static bool remove_unreachable_code(node_t* node)
   case BLOCK:
   {
     // The list of statements in a BLOCK is always the last child node
-    node_t* statement_list = node->children[node->n_children - 1];
+    node_t *statement_list = node->children[node->n_children - 1];
 
     for (size_t i = 0; i < statement_list->n_children; i++)
     {
-      node_t* child_statement = statement_list->children[i];
+      node_t *child_statement = statement_list->children[i];
       bool interrupting = remove_unreachable_code(child_statement);
 
       // If we have an interrupting statement, the rest of the statement list should be freed
@@ -370,7 +370,7 @@ static bool remove_unreachable_code(node_t* node)
 }
 
 // Frees the memory owned by the given node, but does not touch its children
-static void node_finalize(node_t* discard)
+static void node_finalize(node_t *discard)
 {
   if (discard == NULL)
     return;
@@ -392,7 +392,7 @@ static void node_finalize(node_t* discard)
 }
 
 // Recursively frees the memory owned by the given node, and all its children
-static void destroy_subtree(node_t* discard)
+static void destroy_subtree(node_t *discard)
 {
   if (discard == NULL)
     return;
@@ -403,7 +403,7 @@ static void destroy_subtree(node_t* discard)
 }
 
 // Definition of the global string array NODE_TYPE_NAMES
-const char* NODE_TYPE_NAMES[NODE_TYPE_COUNT] = {
+const char *NODE_TYPE_NAMES[NODE_TYPE_COUNT] = {
 #define NODE_TYPE(node_type) #node_type
 #include "nodetypes.h"
 };
