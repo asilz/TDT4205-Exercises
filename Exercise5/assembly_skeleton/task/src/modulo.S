@@ -48,15 +48,13 @@ main:
         movq $1, %r13
 
         leaq n_rows(%rip), %rcx
-        movq (%rcx), %rcx
-        cmpq %r12, %rcx
+        cmpq %r12, (%rcx)
         jl outer_loop_end
 
 
         inner_loop_start:
             leaq n_rows(%rip), %rcx
-            movq (%rcx), %rcx
-            cmpq %r13, %rcx
+            cmpq %r13, (%rcx)
             jl inner_loop_end
 
             movq $0, %rdx
@@ -185,7 +183,7 @@ gd_loop:
     # If quotient == 0, exit the loop
     movq $0, %r8
 
-    cmp %rax, %r8
+    cmpq %rax, %r8
     je gd_loop_end
 
     # Else, increment digit counter, and repeat
