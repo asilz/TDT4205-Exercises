@@ -8,6 +8,5 @@ build/
 *.ast
 *.svg
 *.symbols
-*.S
 *.out
 !vsl_programs/*/suggested/*

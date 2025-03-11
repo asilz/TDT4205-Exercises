@@ -51,3 +51,5 @@ if (USE_ADDRESS_SANITIZER)
   target_compile_options(vslc PRIVATE -fsanitize=address)
   target_link_options(vslc PRIVATE -fsanitize=address)
 endif()
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/assembly_skeleton/task)

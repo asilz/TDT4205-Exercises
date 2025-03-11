@@ -13,5 +13,6 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Exercise1)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Exercise2)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Exercise3)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Exercise4)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Exercise5)
 
 
